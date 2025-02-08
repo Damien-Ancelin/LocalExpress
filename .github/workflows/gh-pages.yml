@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - gh-pages
-    branches-ignore:
-      - main
 
 permissions:
   contents: read
