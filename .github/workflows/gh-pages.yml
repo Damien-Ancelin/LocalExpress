@@ -24,10 +24,10 @@ jobs:
           run_install: false
 
       - name: ⚙️ Setup de l'environnement Node.js
-        uses: action/setup-node@v4
+        uses: actions/setup-node@v4
         with:
-            node-version: 20
-            cache: 'pnpm'
+          node-version: 20
+          cache: 'pnpm'
 
       - name: 📦 Installation des dépendances
         run: pnpm install
@@ -49,7 +49,7 @@ jobs:
 
       - name: ⬆️ Upload des fichiers builder statiques comme artefact
         id: upload
-        uses: action/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
@@ -62,4 +62,4 @@ jobs:
     steps:
       - name: 🚀 Déploiement sur GitHub Pages
         id: deployment
-        uses: action/deploy-pages@v4
+        uses: actions/deploy-pages@v4
