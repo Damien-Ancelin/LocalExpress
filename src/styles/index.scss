@@ -1,0 +1,7 @@
+@use './reset';
+@use './variables' as v;
+
+body{
+  background-color: v.$main-background;
+  font-family: Roboto, serif;
+}
