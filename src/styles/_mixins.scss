@@ -15,12 +15,15 @@
 
 /* Title */
 @mixin main-title{
-  font-size: v.$rem-xl;
+  color: v.$bold-green;
+  font-size: v.$rem-l;
   text-transform: uppercase;
 }
 @mixin sub-title{
+  color: v.$bold-wicker;
   font-size: v.$rem-m;
   font-style: italic;
+  font-weight: lighter;
 }
 
 

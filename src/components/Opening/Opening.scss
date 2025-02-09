@@ -1,0 +1,26 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.opening{
+
+  height: 100vh;
+  @include m.flex-column;
+
+  &__masthead{
+    @include m.flex-center;
+  }
+  &__logo{
+    fill: v.$bold-wicker;
+    margin-right: v.$margin-xs;
+  }
+  &__title{
+    @include m.main-title;
+  }
+  &__subtitle{
+    @include m.sub-title;
+    margin-bottom: v.$margin-m;
+  }
+  &__button{
+    @include m.button;
+  }
+}

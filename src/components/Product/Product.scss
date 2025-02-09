@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as v;
+
+.product{
+  @include m.flex-center;
+  gap: v.$rem-m;
+  background-color: v.$green;
+  padding: v.$padding-m;
+  border-radius: 16px;
+  width: 400px;
+
+  &__image{
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-radius: 8px;
+  }
+  &__price{
+    margin: v.$margin-m 0;
+  }
+  &__button{
+    @include m.button;
+  }
+}
