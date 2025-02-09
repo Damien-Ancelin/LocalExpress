@@ -22,5 +22,6 @@
 - [Diagramme de sequence](./docs/diagramme_sequence.png)
 - [Diagramme de realation-association](./docs/diagramme_edr.png)
 
-## Maquette Graphique
+## 🖼️ Maquette Graphique
+
 ![Maquette Graphique Page Produit](./docs/Maquette_LocalExpress.png)

@@ -11,6 +11,7 @@
   }
   &__logo{
     fill: v.$bold-wicker;
+    margin-right: v.$margin-xs;
   }
   &__title{
     @include m.main-title;
