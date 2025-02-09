@@ -5,8 +5,8 @@ import Opening from './components/Opening/Opening';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Opening />} />
-      <Route path="/accueil" element={<HomePage />} />
+      <Route path="/LocalExpress/" element={<Opening />} />
+      <Route path="/LocalExpress/accueil" element={<HomePage />} />
     </Routes>
   );
 }
