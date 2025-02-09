@@ -25,3 +25,9 @@
 ## 🖼️ Maquette Graphique
 
 ![Maquette Graphique Page Produit](./docs/Maquette_LocalExpress.png)
+
+## 🚀 CI/CD
+
+[gh-pages](https://damien-ancelin.github.io/LocalExpress/)
+
+- 🍋‍🟩 MàJ: 09/02/2025
