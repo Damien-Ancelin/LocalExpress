@@ -13,6 +13,12 @@
   flex-direction: column;
 }
 
+@mixin flex-column-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 /* Title */
 @mixin main-title{
   color: v.$bold-green;
@@ -28,8 +34,8 @@
 
 
 /* Button */
-@mixin button{
-  background-color: v.$main-button;
+@mixin button($bg_color: v.$main-button){
+  background-color: $bg_color;
   padding: v.$padding-xs;
   border-radius: 8px;
   border: none;

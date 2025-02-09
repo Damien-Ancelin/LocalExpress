@@ -1,5 +1,5 @@
-@use '../../styles/mixins' as m;
-@use '../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+@use '../../../styles/variables' as v;
 
 .product{
   @include m.flex-center;
@@ -7,7 +7,6 @@
   background-color: v.$green;
   padding: v.$padding-m;
   border-radius: 16px;
-  width: 400px;
 
   &__image{
     object-fit: cover;

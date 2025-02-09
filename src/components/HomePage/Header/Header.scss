@@ -2,6 +2,7 @@
 @use '../../../styles/variables' as v;
 
 .header{
+  margin-top: v.$margin-m;
   @include m.flex-column;
 
   &__masthead{
