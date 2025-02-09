@@ -1,3 +1,4 @@
+import image from '../../../assets/images/pommes.webp';
 import './Product.scss';
 
 export default function Product() {
@@ -9,7 +10,7 @@ export default function Product() {
           <img
             className="product__image"
             loading="lazy"
-            src="../../images/pommes.webp"
+            src={image}
             alt="Panier de pommes"
           />
         </div>
@@ -30,7 +31,7 @@ export default function Product() {
           <img
             className="product__image"
             loading="lazy"
-            src="../../images/pommes.webp"
+            src={image}
             alt="Panier de pommes"
           />
         </div>
@@ -51,7 +52,7 @@ export default function Product() {
           <img
             className="product__image"
             loading="lazy"
-            src="../../images/pommes.webp"
+            src={image}
             alt="Panier de pommes"
           />
         </div>
@@ -72,7 +73,7 @@ export default function Product() {
           <img
             className="product__image"
             loading="lazy"
-            src="../../images/pommes.webp"
+            src={image}
             alt="Panier de pommes"
           />
         </div>

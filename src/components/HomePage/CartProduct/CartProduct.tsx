@@ -1,3 +1,4 @@
+import image from '../../../assets/images/pommes.webp';
 import './CartProduct.scss';
 
 export default function CartProduct() {
@@ -6,7 +7,7 @@ export default function CartProduct() {
       <img
         className="cart-product__image"
         alt="Panier de pommes rouge"
-        src="../../../images/pommes.webp"
+        src={image}
       />
       <div className="cart-product__details">
         <header className="cart-product__header">
