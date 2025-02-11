@@ -1,25 +1,56 @@
-import image from '@/assets/images/pommes.webp';
+import type { ProductInCart, Product as TProduct } from '@/@types';
 
-export default function Product() {
+type ProductProps = {
+  product: TProduct;
+  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
+};
+
+export default function Product({ product, setCartProducts }: ProductProps) {
+  function addToCart() {
+    setCartProducts((currentCart) => {
+      // SI le produit est déjà dans le panier
+      const alreadyInCart = currentCart.find((p) => p.id === product.id);
+
+      if (alreadyInCart) {
+        // ALORS je vais incrémenter sa quantité
+        return currentCart.map((p) => {
+          if (p.id === product.id) {
+            p.quantity = p.quantity + 1;
+          }
+
+          return p;
+        });
+      }
+
+      // SINON
+      // ALORS je l'ajoute au panier
+      const newProduct: ProductInCart = {
+        ...product,
+        quantity: 1,
+      };
+
+      return [...currentCart, newProduct];
+    });
+  }
+
   return (
     <>
       <article className="product__card">
+        <h3 className="product__title">{product.title}</h3>
         <div>
-          <h3 className="product__title">Pommes</h3>
           <img
             className="product__image"
             loading="lazy"
-            src={image}
-            alt="Panier de pommes"
+            src={product.thumbnail}
+            alt={product.title}
           />
         </div>
-        <div>
-          <p className="product__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-            vitae.
+        <div className="product__details">
+          <p className="product__description">{product.description}</p>
+          <p className="product__price">
+            {product.price}&nbsp;<abbr title="EUR">€</abbr>
           </p>
-          <p className="product__price">2€ /Kg</p>
-          <button className="product__button" type="button">
+          <button className="product__button" type="button" onClick={addToCart}>
             Ajouter
           </button>
         </div>

@@ -3,13 +3,16 @@
 
 .product{
   &__card{
-    @include m.flex-center;
+    @include m.flex-column;
     gap: v.$rem-m;
     background-color: v.$green;
     padding: v.$padding-m;
     border-radius: 16px;
   }
 
+  &__title{
+    text-align: center;
+  }
   &__description{
     color: white;
   }
@@ -22,9 +25,11 @@
     text-transform: uppercase;
   }
   &__image{
+    background-color: v.$wicker;
+    border-radius: 50%;
+    width: 200px;
     object-fit: cover;
     aspect-ratio: 1;
-    border-radius: 8px;
   }
   &__price{
     margin: v.$margin-m 0;
