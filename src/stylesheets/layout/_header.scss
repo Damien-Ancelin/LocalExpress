@@ -1,0 +1,21 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.header{
+  @include m.flex-column;
+  padding: v.$padding-m;
+
+  &__masthead{
+    @include m.flex-center;
+  }
+  &__logo{
+    fill: v.$bold-wicker;
+    margin-right: v.$margin-xs;
+  }
+  &__title{
+    @include m.main-title;
+  }
+  &__subtitle{
+    @include m.sub-title;
+  }
+}

@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as v;
+
+body {
+  color: v.$bold-wicker;
+  font-family: v.$font-sans;
+  font-weight: 400;
+  background-color: v.$main-background;
+}
+
+p {
+  font-size: 1rem;
+}
