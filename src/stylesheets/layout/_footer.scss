@@ -1,0 +1,12 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.footer{
+  background-color: v.$wicker;
+  padding: v.$padding-m;
+  @include m.flex-column;
+  
+  &__text{
+    color: v.$bold-wicker;
+  }
+}

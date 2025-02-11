@@ -1,0 +1,14 @@
+@use '../abstracts/variables' as v;
+
+.category{
+  margin: v.$margin-l 0;
+
+  &__title{
+    margin-bottom: v.$margin-m;
+  }
+  &__container{
+    height: 100vh;
+    overflow: hidden scroll;
+    scrollbar-width: none;
+  }
+}

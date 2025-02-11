@@ -1,0 +1,13 @@
+@use '../abstracts/variables' as v;
+
+.container{
+  padding: 0 v.$padding-l;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: v.$rem-l;
+}
+.product__container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$rem-l;
+}

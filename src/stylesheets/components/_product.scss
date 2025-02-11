@@ -1,0 +1,35 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.product{
+  &__card{
+    @include m.flex-center;
+    gap: v.$rem-m;
+    background-color: v.$green;
+    padding: v.$padding-m;
+    border-radius: 16px;
+  }
+
+  &__description{
+    color: white;
+  }
+  &__details{
+    @include m.flex-column;
+  }
+  &__price{
+    font-weight: 700;
+    font-size: v.$rem-m;
+    text-transform: uppercase;
+  }
+  &__image{
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-radius: 8px;
+  }
+  &__price{
+    margin: v.$margin-m 0;
+  }
+  &__button{
+    @include m.button;
+  }
+}
