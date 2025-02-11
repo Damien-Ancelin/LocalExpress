@@ -1,24 +1,27 @@
-import image from '@/assets/images/pommes.webp';
+import type { Product as TProduct } from '@/@types';
 
-export default function Product() {
+type ProductProps = {
+  product: TProduct;
+};
+
+export default function Product({ product }: ProductProps) {
   return (
     <>
       <article className="product__card">
+        <h3 className="product__title">{product.title}</h3>
         <div>
-          <h3 className="product__title">Pommes</h3>
           <img
             className="product__image"
             loading="lazy"
-            src={image}
-            alt="Panier de pommes"
+            src={product.thumbnail}
+            alt={product.title}
           />
         </div>
-        <div>
-          <p className="product__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-            vitae.
+        <div className="product__details">
+          <p className="product__description">{product.description}</p>
+          <p className="product__price">
+            {product.price}&nbsp;<abbr title="EUR">€</abbr>
           </p>
-          <p className="product__price">2€ /Kg</p>
           <button className="product__button" type="button">
             Ajouter
           </button>
