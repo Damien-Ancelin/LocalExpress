@@ -1,4 +1,4 @@
-import type { GroupedProducts } from '@/@types';
+import type { GroupedProducts, ProductInCart } from '@/@types';
 
 import { api } from '@/services/api';
 import { groupByKey } from '@/utils';
@@ -11,6 +11,7 @@ import Products from './Products/Products';
 
 export default function Content() {
   const [products, setProducts] = useState<GroupedProducts | null>(null);
+  const [cartProducts, setCartProducts] = useState<ProductInCart[]>([]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -23,20 +24,17 @@ export default function Content() {
   }, []);
 
   // TODO Créer un spinner
-  // if (!products) {
-  //   return <p>Veuillez patienter</p>;
-  // }
+  if (!products) {
+    return <p>Veuillez patienter</p>;
+  }
 
   return (
     <>
       <Header />
       <main className="container">
-        {!products ? (
-          <p>Veuillez patienter</p>
-        ) : (
-          <Products products={products} />
-        )}
-        <Cart />
+        {/* TODO: Mise en place d'un conditionnel ? */}
+        <Products products={products} setCartProducts={setCartProducts} />
+        <Cart products={cartProducts} setCartProducts={setCartProducts} />
       </main>
       <Footer />
     </>

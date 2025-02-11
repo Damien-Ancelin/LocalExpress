@@ -1,10 +1,38 @@
-import type { Product as TProduct } from '@/@types';
+import type { ProductInCart, Product as TProduct } from '@/@types';
 
 type ProductProps = {
   product: TProduct;
+  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
 };
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, setCartProducts }: ProductProps) {
+  function addToCart() {
+    setCartProducts((currentCart) => {
+      // SI le produit est déjà dans le panier
+      const alreadyInCart = currentCart.find((p) => p.id === product.id);
+
+      if (alreadyInCart) {
+        // ALORS je vais incrémenter sa quantité
+        return currentCart.map((p) => {
+          if (p.id === product.id) {
+            p.quantity = p.quantity + 1;
+          }
+
+          return p;
+        });
+      }
+
+      // SINON
+      // ALORS je l'ajoute au panier
+      const newProduct: ProductInCart = {
+        ...product,
+        quantity: 1,
+      };
+
+      return [...currentCart, newProduct];
+    });
+  }
+
   return (
     <>
       <article className="product__card">
@@ -22,7 +50,7 @@ export default function Product({ product }: ProductProps) {
           <p className="product__price">
             {product.price}&nbsp;<abbr title="EUR">€</abbr>
           </p>
-          <button className="product__button" type="button">
+          <button className="product__button" type="button" onClick={addToCart}>
             Ajouter
           </button>
         </div>
