@@ -1,13 +1,17 @@
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
+import { store } from './store/store.ts';
 
 import './stylesheets/main.scss';
 import App from './components/App/App.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  <BrowserRouter basename="/LocalExpress">
-    <App />
-  </BrowserRouter>,
+  //<StrictMode>
+  <Provider store={store}>
+    <BrowserRouter basename="/LocalExpress">
+      <App />
+    </BrowserRouter>
+  </Provider>,
   //</StrictMode>,
 );

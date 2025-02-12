@@ -1,43 +1,32 @@
 import type { ProductInCart } from '@/@types';
-import { useState } from 'react';
+import { useAppDispatch } from '@/hooks/redux';
+import { removeFromCart } from '@/store/features/tasksSlice';
 
 type CartProductProps = {
   product: ProductInCart;
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
 };
 
-export default function CartProduct({
-  product,
-  setCartProducts,
-}: CartProductProps) {
-  const [qty, setQty] = useState(product.quantity);
+export default function CartProduct({ product }: CartProductProps) {
+  const dispatch = useAppDispatch();
 
   function updateQuantity(event: React.ChangeEvent<HTMLInputElement>) {
-    const newQty = event.currentTarget.valueAsNumber;
-    setQty(newQty);
-
-    setCartProducts((currentCart) => {
-      return currentCart.map((p) => {
-        if (p.id === product.id) {
-          p.quantity = newQty;
-        }
-
-        return p;
-      });
-    });
+    //const newQuantity = event.target.valueAsNumber;
+    const newQuantity = 2;
+    console.log(newQuantity);
+    if (newQuantity) {
+      dispatch(updateQuantity({ id: product.id, quantity: newQuantity }));
+    }
   }
 
-  function removeProduct() {
-    setCartProducts((currentCart) =>
-      currentCart.filter((p) => p.id !== product.id),
-    );
+  function removeProduct(productId: number) {
+    dispatch(removeFromCart(productId));
   }
 
   return (
     <article className="cart-product">
       <img
         className="cart-product__image"
-        alt="Panier de pommes rouge"
+        alt={product.title}
         src={product.thumbnail}
       />
       <div className="cart-product__details">
@@ -46,7 +35,7 @@ export default function CartProduct({
           <button
             type="button"
             className="cart-product__icon"
-            onClick={removeProduct}
+            onClick={() => removeProduct(product.id)}
           >
             X
           </button>
@@ -60,7 +49,7 @@ export default function CartProduct({
             type="number"
             min={1}
             max={product.stock}
-            value={qty}
+            value={product.quantity}
             onChange={updateQuantity}
           />
           <p className="cart-product__price">

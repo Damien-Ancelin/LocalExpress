@@ -1,33 +1,33 @@
-import type { ProductInCart } from '@/@types';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { emptyCart } from '@/store/features/tasksSlice';
 import CartProduct from '../CartProduct/CartProduct';
 
-type CartProps = {
-  products: ProductInCart[];
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
-};
+export default function Cart() {
+  const dispatch = useAppDispatch();
 
-export default function Cart({ products, setCartProducts }: CartProps) {
-  const total = products.reduce(
+  const cart = useAppSelector((state) => state.cart);
+
+  const total = cart.cartProducts.reduce(
     (previous, current) => previous + current.price * current.quantity,
     0,
   );
 
-  function emptyCart() {
-    setCartProducts([]);
+  function emptyTheCart() {
+    dispatch(emptyCart());
   }
 
   return (
     <div className="cart__container">
-      <button className="cart__empty-button" onClick={emptyCart} type="button">
+      <button
+        className="cart__empty-button"
+        onClick={emptyTheCart}
+        type="button"
+      >
         vider le panier
       </button>
       <div className="cart__product-container">
-        {products.map((product) => (
-          <CartProduct
-            key={product.id}
-            product={product}
-            setCartProducts={setCartProducts}
-          />
+        {cart.cartProducts.map((product) => (
+          <CartProduct key={product.id} product={product} />
         ))}
       </div>
       <div className="cart__order-details">

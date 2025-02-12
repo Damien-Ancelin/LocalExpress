@@ -1,36 +1,27 @@
 import type { ProductInCart, Product as TProduct } from '@/@types';
+import { useAppDispatch } from '@/hooks/redux';
+import { addCart, updateCartProduct } from '@/store/features/tasksSlice';
 
 type ProductProps = {
   product: TProduct;
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
+  currentCart: ProductInCart[];
 };
 
-export default function Product({ product, setCartProducts }: ProductProps) {
+export default function Product({ product, currentCart }: ProductProps) {
+  const dispatch = useAppDispatch();
   function addToCart() {
-    setCartProducts((currentCart) => {
-      // SI le produit est déjà dans le panier
-      const alreadyInCart = currentCart.find((p) => p.id === product.id);
-
-      if (alreadyInCart) {
-        // ALORS je vais incrémenter sa quantité
-        return currentCart.map((p) => {
-          if (p.id === product.id) {
-            p.quantity = p.quantity + 1;
-          }
-
-          return p;
-        });
-      }
-
-      // SINON
-      // ALORS je l'ajoute au panier
-      const newProduct: ProductInCart = {
-        ...product,
-        quantity: 1,
-      };
-
-      return [...currentCart, newProduct];
-    });
+    const alreadyInCart = currentCart.find(
+      (cartProduct) => cartProduct.id === product.id,
+    );
+    if (alreadyInCart) {
+      dispatch(updateCartProduct(product.id));
+      return;
+    }
+    const newProduct: ProductInCart = {
+      ...product,
+      quantity: 1,
+    };
+    dispatch(addCart(newProduct));
   }
 
   return (
