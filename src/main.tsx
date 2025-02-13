@@ -4,14 +4,16 @@ import { BrowserRouter } from 'react-router';
 import { store } from './store/store.ts';
 
 import './stylesheets/main.scss';
+import { StrictMode } from 'react';
 import App from './components/App/App.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  //<StrictMode>
-  <Provider store={store}>
-    <BrowserRouter basename="/LocalExpress">
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  //</StrictMode>,
+  <StrictMode>
+    <Provider store={store}>
+      <BrowserRouter basename="/LocalExpress">
+        <App />
+      </BrowserRouter>
+    </Provider>
+    ,
+  </StrictMode>,
 );

@@ -1,6 +1,6 @@
 import type { ProductInCart, Product as TProduct } from '@/@types';
 import { useAppDispatch } from '@/hooks/redux';
-import { addCart, updateCartProduct } from '@/store/features/tasksSlice';
+import { addCart, updateCartProduct } from '@/store/features/cartSlice';
 
 type ProductProps = {
   product: TProduct;

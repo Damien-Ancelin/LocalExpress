@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { emptyCart } from '@/store/features/tasksSlice';
+import { emptyCart } from '@/store/features/cartSlice';
 import CartProduct from '../CartProduct/CartProduct';
 
 export default function Cart() {
