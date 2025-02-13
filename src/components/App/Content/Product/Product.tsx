@@ -1,6 +1,9 @@
 import type { ProductInCart, Product as TProduct } from '@/@types';
 import { useAppDispatch } from '@/hooks/redux';
 import { addCart, updateCartProduct } from '@/store/features/cartSlice';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import ProductsDetails from './ProductDetails';
 
 type ProductProps = {
   product: TProduct;
@@ -9,6 +12,16 @@ type ProductProps = {
 
 export default function Product({ product, currentCart }: ProductProps) {
   const dispatch = useAppDispatch();
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = (event?: React.MouseEvent<HTMLButtonElement>) => {
+    //event?.stopPropagation();
+    setShowModal(false);
+  };
+
   function addToCart() {
     const alreadyInCart = currentCart.find(
       (cartProduct) => cartProduct.id === product.id,
@@ -26,7 +39,7 @@ export default function Product({ product, currentCart }: ProductProps) {
 
   return (
     <>
-      <article className="product__card">
+      <article className="product__card" onClick={openModal}>
         <h3 className="product__title">{product.title}</h3>
         <div>
           <img
@@ -46,6 +59,11 @@ export default function Product({ product, currentCart }: ProductProps) {
           </button>
         </div>
       </article>
+      {showModal &&
+        createPortal(
+          <ProductsDetails product={product} onClose={closeModal} />,
+          document.getElementById('modal-portal') as HTMLElement,
+        )}
     </>
   );
 }
