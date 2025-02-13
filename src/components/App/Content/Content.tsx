@@ -1,38 +1,49 @@
-import type { GroupedProducts } from '@/@types';
+import { useEffect } from 'react';
 
-import { api } from '@/services/api';
-import { groupByKey } from '@/utils';
-import { useEffect, useState } from 'react';
-
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchProducts } from '@/store/features/ProductsSlice';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Cart from './Cart/Cart';
 import Products from './Products/Products';
 
 export default function Content() {
-  const [products, setProducts] = useState<GroupedProducts | null>(null);
-  useEffect(() => {
-    async function fetchProducts() {
-      // ? Destructuration du resultat de l'appel API
-      const { products } = await api.getProducts();
-      const categorizedProducts = groupByKey(products, 'category');
-      setProducts(categorizedProducts);
-    }
-    fetchProducts();
-  }, []);
+  const dispatch = useAppDispatch();
 
-  // TODO Créer un spinner
-  if (!products) {
-    return <p>Veuillez patienter</p>;
-  }
+  const error = useAppSelector((state) => state.products.error);
+  const loading = useAppSelector((state) => state.products.loading);
+  //const [products, setProducts] = useState<GroupedProducts | null>(null);
+
+  // useEffect(() => {
+  //   async function fetchProducts() {
+  //     try {
+  //       // ? Destructuration du resultat de l'appel API
+  //       const { products } = await api.getProducts();
+  //       const categorizedProducts = groupByKey(products, 'category');
+  //       setProducts(categorizedProducts);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   fetchProducts();
+  // }, []);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <>
       <Header />
       <main className="container">
-        {/* TODO: Mise en place d'un conditionnel ? */}
-        <Products products={products} />
-        <Cart />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {loading && <p>Chargement en cours…</p>}
+        {!loading && (
+          <>
+            <Products />
+            <Cart />
+          </>
+        )}
       </main>
       <Footer />
     </>

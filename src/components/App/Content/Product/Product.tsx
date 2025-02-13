@@ -14,11 +14,16 @@ export default function Product({ product, currentCart }: ProductProps) {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => {
+  const openModal = (event?: React.MouseEvent<HTMLElement>) => {
+    const element = event?.target as HTMLElement;
+    if (element.classList.contains('product__button')) {
+      return;
+    }
+
     setShowModal(true);
   };
   const closeModal = (event?: React.MouseEvent<HTMLButtonElement>) => {
-    //event?.stopPropagation();
+    event?.stopPropagation();
     setShowModal(false);
   };
 
@@ -39,6 +44,7 @@ export default function Product({ product, currentCart }: ProductProps) {
 
   return (
     <>
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <article className="product__card" onClick={openModal}>
         <h3 className="product__title">{product.title}</h3>
         <div>
