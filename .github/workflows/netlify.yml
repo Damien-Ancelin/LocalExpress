@@ -2,7 +2,7 @@ name: Deploy to Netlify
 
 on:
   push:
-    branches: [ "S19E02-Netlify" ]
+    branches: [ "feature/Redux/Vitest" ]
   workflow_dispatch:
 
 permissions:
@@ -58,7 +58,7 @@ jobs:
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
-          production-branch: S19E02-Netlify
+          production-branch: feature/Redux/Vitest
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
