@@ -1,0 +1,50 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.cart-product{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  background-color: v.$wicker;
+  border: 2px solid v.$bold-wicker;
+  border-radius: 16px 16px 16px 0;
+  margin-top: v.$rem-m;
+  width: 100%;
+
+  &__image{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    aspect-ratio: 1;
+  }
+  &__details{
+    display: flex;
+    flex-direction: column;
+    padding: v.$padding-s;
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: v.$margin-s;
+  }
+  &__main{
+    @include m.flex-center;
+    justify-content: space-evenly;
+  }
+  &__quantity{
+    padding-left: v.$padding-s;
+    width: 25%;
+  }
+  &__price{
+    //margin-left: v.$margin-xl;
+    font-size: v.$rem-m;
+  }
+  &__icon{
+    @include m.button(v.$bold-green);
+    color: v.$wicker;
+    position: absolute;
+    top:0;
+    right:0;
+    margin: v.$margin-xs v.$margin-xs 0 0;
+  }
+}

@@ -1,0 +1,50 @@
+@use 'sass:color';
+@use './variables' as v;
+
+/* Flex */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column{
+  @include flex-center();
+  flex-direction: column;
+}
+
+@mixin flex-column-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Title */
+@mixin main-title{
+  color: v.$bold-green;
+  font-size: v.$rem-l;
+  text-transform: uppercase;
+}
+@mixin sub-title{
+  color: v.$bold-wicker;
+  font-size: v.$rem-m;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+/* Button */
+@mixin button($bg_color: v.$main-button){
+  background-color: $bg_color;
+  padding: v.$padding-xs;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: v.$bold-wicker;
+    border-color: v.$main-button;
+    color: v.$wicker;
+  }
+}
