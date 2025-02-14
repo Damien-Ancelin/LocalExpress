@@ -16,7 +16,9 @@ export default function () {
         </svg>
         <h1 className="opening__title">LocalExpress</h1>
       </div>
-      <h2 className="opening__subtitle">Vos courses livrées avec le sourire</h2>
+      <h2 className="opening__subtitle">
+        Vos courses livrées avec le sourire.
+      </h2>
       <Link to="accueil">
         <button className="opening__button button" type="button">
           Commencer
