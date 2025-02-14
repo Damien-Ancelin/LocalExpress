@@ -13,7 +13,7 @@ import App from './components/App/App.tsx';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/LocalExpress">
         <App />
       </BrowserRouter>
     </Provider>

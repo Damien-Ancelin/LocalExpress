@@ -10,6 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,6 +50,9 @@ jobs:
       - name: 🏗️ Build du projet
         id: build
         run: pnpm run build
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+
 
       - name: ⬆️ Upload des fichiers builder statiques comme artefact
         id: upload
