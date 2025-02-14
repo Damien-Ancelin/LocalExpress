@@ -7,13 +7,10 @@ import './stylesheets/main.scss';
 import { StrictMode } from 'react';
 import App from './components/App/App.tsx';
 
-// ! A rajouter pour gh-pages
-// ? <BrowserRouter basename="/LocalExpress">
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/LocalExpress">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
