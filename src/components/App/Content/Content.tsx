@@ -2,6 +2,11 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchProducts } from '@/store/features/ProductsSlice';
+
+import type { GroupedProducts } from '@/@types';
+
+import { groupByKey } from '@/utils';
+
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Cart from './Cart/Cart';
@@ -10,37 +15,34 @@ import Products from './Products/Products';
 export default function Content() {
   const dispatch = useAppDispatch();
 
+  const products = useAppSelector((state) => state.products.products);
   const error = useAppSelector((state) => state.products.error);
   const loading = useAppSelector((state) => state.products.loading);
-  //const [products, setProducts] = useState<GroupedProducts | null>(null);
 
-  // useEffect(() => {
-  //   async function fetchProducts() {
-  //     try {
-  //       // ? Destructuration du resultat de l'appel API
-  //       const { products } = await api.getProducts();
-  //       const categorizedProducts = groupByKey(products, 'category');
-  //       setProducts(categorizedProducts);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   fetchProducts();
-  // }, []);
+  const categorizedProducts = groupByKey(
+    products,
+    'category',
+  ) as GroupedProducts;
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  if (error) {
+    return <div className="alert alert--danger">{error}</div>;
+  }
+
+  if (loading) {
+    return <h1>ça charge</h1>;
+  }
+
   return (
     <>
       <Header />
       <main className="container">
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {loading && <p>Chargement en cours…</p>}
         {!loading && (
           <>
-            <Products />
+            <Products products={categorizedProducts} />
             <Cart />
           </>
         )}

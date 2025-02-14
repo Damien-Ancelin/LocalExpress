@@ -1,10 +1,9 @@
-import type { GroupedProducts } from '@/@types';
+import type { Product } from '@/@types';
 import { api } from '@/services/api';
-import { groupByKey } from '@/utils';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 type ProductsState = {
-  products: GroupedProducts[];
+  products: Product[];
   loading: boolean;
   error: string | null;
 };
@@ -17,13 +16,12 @@ const initialState: ProductsState = {
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async (_, { rejectWithValue }) => {
+  async (_, /*{ rejectWithValue }*/ thunkAPI) => {
     try {
       const { products } = await api.getProducts();
-      const categorizedProducts = groupByKey(products, 'category');
-      return categorizedProducts;
+      return products;
     } catch (error) {
-      return rejectWithValue(
+      return thunkAPI.rejectWithValue(
         `Erreur lors de la récupération des produits: ${error}`,
       );
     }
@@ -44,7 +42,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.products.push(action.payload);
+        state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
