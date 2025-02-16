@@ -1,9 +1,8 @@
-import type { GroupedProducts, ProductInCart } from '@/@types';
+import type { GroupedProducts } from '@/@types';
 
 import { api } from '@/services/api';
 import { groupByKey } from '@/utils';
 import { useEffect, useState } from 'react';
-
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Cart from './Cart/Cart';
@@ -11,7 +10,6 @@ import Products from './Products/Products';
 
 export default function Content() {
   const [products, setProducts] = useState<GroupedProducts | null>(null);
-  const [cartProducts, setCartProducts] = useState<ProductInCart[]>([]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -33,8 +31,8 @@ export default function Content() {
       <Header />
       <main className="container">
         {/* TODO: Mise en place d'un conditionnel ? */}
-        <Products products={products} setCartProducts={setCartProducts} />
-        <Cart products={cartProducts} setCartProducts={setCartProducts} />
+        <Products products={products} />
+        <Cart />
       </main>
       <Footer />
     </>

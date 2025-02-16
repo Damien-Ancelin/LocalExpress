@@ -1,12 +1,13 @@
-import type { GroupedProducts, ProductInCart } from '@/@types';
+import type { GroupedProducts } from '@/@types';
+import { useCartContext } from '@/contexts/CartContext';
 import Product from '../Product/Product';
 
 type ProductsProps = {
   products: GroupedProducts;
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
 };
 
-export default function Products({ products, setCartProducts }: ProductsProps) {
+export default function Products({ products }: ProductsProps) {
+  const { setCartProducts } = useCartContext();
   return (
     <div className="category__container">
       {Object.entries(products).map(([category, items]) => (

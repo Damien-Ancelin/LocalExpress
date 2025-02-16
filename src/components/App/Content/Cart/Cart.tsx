@@ -1,13 +1,9 @@
-import type { ProductInCart } from '@/@types';
+import { useCartContext } from '@/contexts/CartContext';
 import CartProduct from '../CartProduct/CartProduct';
 
-type CartProps = {
-  products: ProductInCart[];
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
-};
-
-export default function Cart({ products, setCartProducts }: CartProps) {
-  const total = products.reduce(
+export default function Cart() {
+  const { cartProducts, setCartProducts } = useCartContext();
+  const total = cartProducts.reduce(
     (previous, current) => previous + current.price * current.quantity,
     0,
   );
@@ -22,7 +18,7 @@ export default function Cart({ products, setCartProducts }: CartProps) {
         vider le panier
       </button>
       <div className="cart__product-container">
-        {products.map((product) => (
+        {cartProducts.map((product) => (
           <CartProduct
             key={product.id}
             product={product}
