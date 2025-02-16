@@ -6,7 +6,7 @@ type CartState = {
   cartProducts: ProductInCart[];
 };
 
-const initialState: CartState = {
+export const initialState: CartState = {
   cartProducts: [],
 };
 
