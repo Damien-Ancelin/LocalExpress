@@ -10,7 +10,10 @@
 - ⚡ Environnement Vite
 - ⚛️ React
   - 🛣️ React-router
+- 🕸️ Redux
+  - 🆚 Branch React Context
 - 🧪 Biome
+- ⚡ Vitest
 - 📝 TypeScript
 - 😎 Sass
 
@@ -31,3 +34,8 @@
 [gh-pages](https://damien-ancelin.github.io/LocalExpress/)
 
 - 🍋‍🟩 MàJ: 09/02/2025
+- 🍉 MàJ: 14/02/2025
+
+[netlify](https://projectlocalexpress.netlify.app/accueil)
+
+- 🍎 Mise en place: 14/02/2025
