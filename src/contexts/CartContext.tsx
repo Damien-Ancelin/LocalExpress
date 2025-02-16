@@ -22,6 +22,7 @@ export default function CartContextProvider({
     return { cartProducts, setCartProducts };
   }, [cartProducts]);
 
+  // ? React 19 ? <CartContext value={contextValues}>
   return (
     <CartContext.Provider value={contextValues}>
       {children}
@@ -30,6 +31,7 @@ export default function CartContextProvider({
 }
 
 export function useCartContext() {
+  // ? React 19 ? const context = use(CartContext);
   const context = useContext(CartContext);
 
   if (!context) {
