@@ -1,11 +1,12 @@
 import type { ProductInCart, Product as TProduct } from '@/@types';
+import { useCartContext } from '@/contexts/CartContext';
 
 type ProductProps = {
   product: TProduct;
-  setCartProducts: React.Dispatch<React.SetStateAction<ProductInCart[]>>;
 };
 
-export default function Product({ product, setCartProducts }: ProductProps) {
+export default function Product({ product }: ProductProps) {
+  const { setCartProducts } = useCartContext();
   function addToCart() {
     setCartProducts((currentCart) => {
       // SI le produit est déjà dans le panier

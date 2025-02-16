@@ -1,5 +1,4 @@
 import type { ProductInCart } from '@/@types';
-import { useState } from 'react';
 
 type CartProductProps = {
   product: ProductInCart;
@@ -10,11 +9,12 @@ export default function CartProduct({
   product,
   setCartProducts,
 }: CartProductProps) {
-  const [qty, setQty] = useState(product.quantity);
-
   function updateQuantity(event: React.ChangeEvent<HTMLInputElement>) {
     const newQty = event.currentTarget.valueAsNumber;
-    setQty(newQty);
+
+    if (newQty === 0) {
+      removeProduct();
+    }
 
     setCartProducts((currentCart) => {
       return currentCart.map((p) => {
@@ -58,9 +58,9 @@ export default function CartProduct({
             className="cart-product__quantity"
             name="qty"
             type="number"
-            min={1}
+            min={0}
             max={product.stock}
-            value={qty}
+            value={product.quantity}
             onChange={updateQuantity}
           />
           <p className="cart-product__price">

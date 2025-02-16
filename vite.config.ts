@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/LocalExpress/',
   resolve: {
     alias: {
-	    '@': '/src',
-    }
-  }
+      '@': '/src',
+    },
+  },
 });
